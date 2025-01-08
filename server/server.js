@@ -20,6 +20,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Welcome to the Notes App API!',
+    status: 'Server is running',
+    timestamp: new Date().toISOString(),
+  });
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
 
