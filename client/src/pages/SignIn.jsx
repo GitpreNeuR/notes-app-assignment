@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock } from 'lucide-react';
-import { setCredentials } from '../store/slices/authSlice';
+import { setCredentials } from '../store/slices/api/authSlice';
 import toast from 'react-hot-toast';
 import AuthLayout from '../layouts/AuthLayout';
 import { Eye, EyeOff } from 'lucide-react'; 
@@ -28,7 +28,7 @@ const SignIn = () => {
     try {
       setGeneratingOtp(true); // Start loading
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/auth/sendOtpVerificationEmail`,
+        `${import.meta.env.VITE_API_URL}/api/auth/sendOtpVerificationEmail`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -56,7 +56,7 @@ const SignIn = () => {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/verifyOtp`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/verifyOtp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp }),
@@ -86,7 +86,7 @@ const SignIn = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
