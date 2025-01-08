@@ -25,7 +25,7 @@ const Home = () => {
         toast.error('Access Token not found, Please SignUp');
         return navigate('/');
       }
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/notes/getAllNotes`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/getAllNotes`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,7 +50,7 @@ const Home = () => {
 
     try {
       const token = localStorage.getItem('jwtToken');
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/notes/create`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem('jwtToken');
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/notes/deleteNote/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/notes/deleteNote/${id}`,
         {
           method: 'DELETE',
           headers: {
