@@ -11,7 +11,11 @@ const app = express();
 const PORT = process.env.PORT ;
 
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://notes-app-assignment-3wca.vercel.app', // Allow only your frontend origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  credentials: true, // Allow cookies and credentials
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
