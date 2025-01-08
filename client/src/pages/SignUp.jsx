@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Calendar, Lock } from 'lucide-react';
-import { setCredentials } from '../store/slices/api/authSlice';
+import { setCredentials } from '../store/slices/authSlice';
 import toast from 'react-hot-toast';
 import AuthLayout from '../layouts/AuthLayout';
 import { Eye, EyeOff } from 'lucide-react'; 
