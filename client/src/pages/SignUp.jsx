@@ -29,7 +29,6 @@ const SignUp = () => {
     }
   
     try {
-      setGeneratingOtp(true); // Start loading
 
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/verifyOtp`, {
         method: 'POST',
@@ -49,9 +48,7 @@ const SignUp = () => {
     } catch (error) {
       toast.error(error.message);
     }
-    finally {
-      setGeneratingOtp(false); // Stop loading
-    }
+  
   };
 
   const handleGenerateOtp = async (event) => {
@@ -63,6 +60,8 @@ const SignUp = () => {
     }
   
     try {
+            setGeneratingOtp(true); // Start loading
+
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/auth/sendOtpVerificationEmail`,
         {
@@ -78,6 +77,9 @@ const SignUp = () => {
       toast.success('OTP sent successfully');
     } catch (error) {
       toast.error(error.message);
+    }
+  finally {
+      setGeneratingOtp(false); // Stop loading
     }
   };
   
@@ -155,7 +157,7 @@ const SignUp = () => {
             <div className="relative flex-grow">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <input
-                type="password"
+                type={showOtp ? 'text' : 'password'}
                 placeholder="OTP"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
